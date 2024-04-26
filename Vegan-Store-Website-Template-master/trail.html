@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save Input in JSON</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+
+<body>
+  <input type="text" id="nameInput" placeholder="Enter your name">
+  <input type="number" id="ageInput" placeholder="Enter your age">
+  <button onclick="saveData()">Save Data</button>
+
+ 
+  <script>
+    function saveData() {
+      // Get input values
+      var name = document.getElementById('nameInput').value;
+      var age = document.getElementById('ageInput').value;
+
+      // Create a JavaScript object
+      var data = {
+        "name": name,
+        "age": age
+      };
+
+      // Convert the JavaScript object to JSON string
+      var jsonString = JSON.stringify(data);
+
+      // Save JSON data to a file using FileSaver.js
+      var blob = new Blob([jsonString], { type: "application/json" });
+      saveAs(blob, "data.json");
+    }
+  </script>
+</body>
+</html>
